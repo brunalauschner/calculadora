@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script> 
+</head>
+<body>
+<div id="app">
+    <input type="number" placeholder="Primeiro numero" v-model="primeiro">
+    <input type="number" placeholder="Segundo numero" v-model="segundo">
+    
+    <select v-model="selected">
+        <option v-for="opcao in opcoes">
+          {{ opcao.text }}
+        </option>
+      </select>
+    
+      <button v-on:click="calcular">Calcular</button><br>
+    <p>Resultado:{{ resultado }}</p>
+</div>
+    <script>
+        let app = new Vue({
+            el: "#app", 
+            data: {
+                primeiro: 0,
+                segundo: 0,
+                selected: 'A',
+                resultado: 0,
+                opcoes: [
+                    {text: 'Vezes', value: 'A'},
+                    {text: 'Menos', value: 'B'},
+                    {text: 'Mais', value: 'C'},
+                    {text: 'Divisão', value: 'D'}
+                ]
+            }, 
+            methods: {
+                calcular: function(){
+                    if(this.selected == 'Vezes'){
+                        this.resultado = this.primeiro*this.segundo
+                    }
+                    else if(this.selected == 'Menos'){
+                        this.resultado = this.primeiro-this.segundo
+                    }
+                    else if(this.selected == 'Mais'){
+                        this.resultado = (this.primeiro)+(this.segundo)
+                    }
+                    else if(this.selected == 'Divisão'){
+                        this.resultado = this.primeiro/this.segundo
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>
